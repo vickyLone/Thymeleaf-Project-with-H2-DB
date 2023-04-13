@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<meta charset="UTF-8">
+<title>Insert Products</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1>Insert Products</h1>
+		<p style="text-align: center" class=text-green th:text=${msg}></p>
+
+		<form th:action="@{/save}" method="post" th:object="${products}">
+			<div class="form-group">
+				<label>Product Name:</label> <input type="text" th:field="*{name}" /><br />
+				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+					class="text-danger"></div>
+			</div>
+			<div class="form-group">
+				<label>Product Price:</label> <input type="number"
+					th:field="*{price}" /><br />
+				<div th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+					class="text-danger"></div>
+
+			</div>
+			<div>
+			<input type="hidden" th:field="*{id}" ></div>
+			
+			
+			<div class="form-group">
+				<label>Product Quantity:</label> <input type="number"
+					th:field="*{quantity}" /><br />
+				<div th:if="${#fields.hasErrors('quantity')}"
+					th:errors="*{quantity}" class="text-danger"></div>
+
+			</div>
+			
+			<button type="submit" class="btn btn-primary" value="Save">Save</button>
+			<a href="/" type="reset" class="btn btn-secondary">Reset</a> <a
+				href="records" class="btn btn-link">View Products</a>
+
+		</form>
+	</div>
+</body>
+</html>
